@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CloudTrain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace CloudTrain.Controllers
 {
     public class HomeController : Controller
     {
+
+        RouteContext db = new RouteContext();
         public ActionResult Index()
         {
             return View();
@@ -16,7 +19,7 @@ namespace CloudTrain.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+            
             return View();
         }
 
