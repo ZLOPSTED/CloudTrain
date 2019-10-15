@@ -9,5 +9,11 @@ namespace CloudTrain.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public Carriage Carriage { get; set; }
+        public int CarriageId { get; set; }
+        public bool IsFree { get; set; }
+        public User User { get; set; }
+        
+       
     }
 }

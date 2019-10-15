@@ -8,14 +8,20 @@ namespace CloudTrain.Models
     public class Route
     {
         public int Id{get; set;}
-        public string Name { get; set; }
+        public string Name { get; set; } 
         public float CoupeFare { get; set; } // цена за купе
         public float ReservedSeatFare { get; set; }  // цена за плацкарт
-        public float generalFare { get; set; }// цена за общий
-        /*public ICollection<Station> Stations { get; set; }
+        public float GeneralFare { get; set; }// цена за общий
+        public ICollection<RouteStation> RouteStations { get; set; }
+        public ICollection<RouteTrain> RouteTrains { get; set; }
         public Route()
         {
-            Stations = new List<Station>();
-        }*/
+            RouteStations = new List<RouteStation>();
+            RouteTrains = new List<RouteTrain>();
+
+
+        }
+        
+
     }
 }

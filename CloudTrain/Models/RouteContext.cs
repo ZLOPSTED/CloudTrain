@@ -10,8 +10,10 @@ namespace CloudTrain.Models
     {
         public RouteContext() : base("DbConnection")
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<RouteContext>());
-            
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<RouteContext>());
+            Database.SetInitializer(new CreateDatabaseIfNotExists<RouteContext>());
+            //Database.SetInitializer(new DropCreateDatabaseAlways< RouteContext > ());
+
         }
 
         public DbSet<Train> Trains { get; set; }
@@ -19,6 +21,10 @@ namespace CloudTrain.Models
         public DbSet<Route> Routes{ get; set; }
         public DbSet<Station> Stations { get; set; }
         public DbSet<Carriage> Carriages { get; set; }
-
+        public DbSet<User> Users { get; set; }
+        public DbSet<RouteStation> RouteStations { get; set; }
+        public DbSet<UserPlace> UserPlaces { get; set; }
+        public DbSet<PurchasedPlaces> PurchasedPlaces { get; set; }
+        public DbSet<RouteTrain> RouteTrains{ get; set; }
     }
 }

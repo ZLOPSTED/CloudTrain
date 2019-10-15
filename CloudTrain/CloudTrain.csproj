@@ -133,10 +133,15 @@
     </Compile>
     <Compile Include="Models\Carriage.cs" />
     <Compile Include="Models\Place.cs" />
+    <Compile Include="Models\PurchasedPlaces.cs" />
+    <Compile Include="Models\RouteStation.cs" />
     <Compile Include="Models\Route.cs" />
     <Compile Include="Models\RouteContext.cs" />
+    <Compile Include="Models\RouteTrain.cs" />
     <Compile Include="Models\Station.cs" />
     <Compile Include="Models\Train.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserPlace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

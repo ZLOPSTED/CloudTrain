@@ -11,8 +11,11 @@ namespace CloudTrain.Controllers
     {
 
         RouteContext db = new RouteContext();
+
+
         public ActionResult Index()
         {
+            db.Trains.Add(new Train() { Name = "L" });
             return View();
         }
 
