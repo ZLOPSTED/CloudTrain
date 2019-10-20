@@ -1,0 +1,41 @@
+2019-10-16 20:24:40.1567|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 20:26:09.1288|INFO|CloudTrain.Controllers.HomeController|Go to About
+2019-10-16 20:30:18.5619|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 20:34:01.0700|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 21:10:24.9473|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 21:18:48.6926|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 21:20:53.3934|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 21:22:27.3324|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 21:22:39.0444|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 21:22:49.7014|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 21:26:45.7134|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 21:29:22.0958|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 21:45:58.3959|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 21:50:55.7853|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 21:53:36.5303|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 21:54:03.0263|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 21:56:27.8283|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 21:58:15.1783|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:00:34.3153|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:00:50.1683|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:00:53.5123|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:01:14.3773|INFO|CloudTrain.Controllers.HomeController|Go to About
+2019-10-16 22:01:21.1123|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:02:57.5043|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:08:58.6739|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:10:52.4559|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:13:05.4909|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:14:50.1529|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:19:47.6180|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:31:48.6211|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:34:21.6691|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:36:22.6531|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:39:55.0644|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:40:50.0384|INFO|CloudTrain.Controllers.HomeController|Go to About
+2019-10-16 22:40:55.0144|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:42:43.8224|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:44:02.9204|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:46:34.5124|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:47:43.7984|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:48:51.6244|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-16 22:53:02.0974|INFO|CloudTrain.Controllers.HomeController|Go to home page

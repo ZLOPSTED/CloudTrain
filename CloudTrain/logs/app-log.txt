@@ -1,0 +1,5 @@
+2019-10-17 17:01:11.5730|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-17 17:03:40.0390|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-17 17:04:48.4160|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-17 17:19:05.6680|INFO|CloudTrain.Controllers.HomeController|Go to home page
+2019-10-17 20:27:53.1186|INFO|CloudTrain.Controllers.HomeController|Go to About

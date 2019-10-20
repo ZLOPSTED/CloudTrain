@@ -1,18 +1,24 @@
-﻿using System;
+﻿
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace CloudTrain.Models
 {
-    public class User
+    public class User : IdentityUser
     {
-        public int Id{ get; set; }
-        public string Name { get; set; }
+        public int Year { get; set; }
         public ICollection<UserPlace> Places { get; set; }
         public User()
         {
             Places = new List<UserPlace>();
         }
+       
     }
 }
