@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories
 {
-
     public class RouteRepository : IRepository<Route>
     {
 
