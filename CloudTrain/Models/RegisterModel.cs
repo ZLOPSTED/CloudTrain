@@ -15,13 +15,16 @@ namespace CloudTrain.Models
         public int Year { get; set; }
 
         [Required]
+        public string Name { get; set; }
+
+        [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required]
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         [DataType(DataType.Password)]
-        public string PasswordConfirm { get; set; }
+        public string ConfirmPassword { get; set; }
     }
 
 }

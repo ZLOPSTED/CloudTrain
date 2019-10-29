@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using DataAccess.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 
-namespace CloudTrain.Models
+namespace DataAccess.Identity
 {
     public class ApplicationUserManager : UserManager<User>
     {
@@ -11,11 +12,11 @@ namespace CloudTrain.Models
                 : base(store)
         {
         }
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
+       /* public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             RouteContext db = context.Get<RouteContext>();
             ApplicationUserManager manager = new ApplicationUserManager(new UserStore<User>(db));
             return manager;
-        }
+        }*/
     }
 }

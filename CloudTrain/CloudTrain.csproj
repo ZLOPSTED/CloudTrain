@@ -169,24 +169,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ApplicationRoleManager.cs" />
-    <Compile Include="Models\ApplicationUserManager.cs" />
-    <Compile Include="Models\Carriage.cs" />
-    <Compile Include="ViewModels\CreateRoleModel.cs" />
-    <Compile Include="ViewModels\EditRoleModel.cs" />
-    <Compile Include="ViewModels\LoginModel.cs" />
-    <Compile Include="Models\Place.cs" />
-    <Compile Include="Models\PurchasedPlaces.cs" />
-    <Compile Include="ViewModels\RegisterModel.cs" />
-    <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\RouteStation.cs" />
-    <Compile Include="Models\Route.cs" />
-    <Compile Include="Models\RouteContext.cs" />
-    <Compile Include="Models\RouteTrain.cs" />
-    <Compile Include="Models\Station.cs" />
-    <Compile Include="Models\Train.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserPlace.cs" />
+    <Compile Include="Models\CreateRoleModel.cs" />
+    <Compile Include="Models\EditRoleModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -282,6 +268,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{ad5ea4e2-5026-4336-8d8b-b411e5a5f9df}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

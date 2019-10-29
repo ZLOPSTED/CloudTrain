@@ -1,29 +1,31 @@
-﻿using CloudTrain.Models;
+﻿using BusinessLogic.Interfaces;
+using BusinessLogic.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
 
-[assembly: OwinStartup(typeof(CloudTrain.Startup))]
-namespace CloudTrain
+[assembly: OwinStartup(typeof(CloudTrain.App_Start.Startup))]
+namespace CloudTrain.App_Start
 {
    
     public class Startup
     {
+        IServiceCreator serviceCreator = new ServiceCreator();
         public void Configuration(IAppBuilder app)
         {
-            app.CreatePerOwinContext<RouteContext>(RouteContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-
-            // регистрация менеджера ролей
-            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
-
+            app.CreatePerOwinContext<IUserService>(CreateUserService);
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
             });
+        }
+
+        private IUserService CreateUserService()
+        {
+            return serviceCreator.CreateUserService("DefaultConnection");
         }
     }
 }

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace CloudTrain.Models
+namespace DataAccess.Models
 {
     public class RouteStation
     {

@@ -5,17 +5,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace CloudTrain.Models
+namespace DataAccess.Models
 {
-    public class UserPlace
+    public class RouteTrain
     {
-        public User User { get; set; }
+        public Train Train { get; set; }
 
         [Key, Column(Order = 0)]
-        public int UserId { get; set; }
+        public int TrainId { get; set; }
+        public Route Route{ get; set; }
 
         [Key, Column(Order = 1)]
-        public int PlaceId { get; set; }
-        public Place Place { get; set; }
+        public int RouteId { get; set; }
+        public DateTime Date { get; set; }
     }
 }

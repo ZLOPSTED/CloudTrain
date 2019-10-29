@@ -1,4 +1,7 @@
-﻿using CloudTrain.Models;
+﻿using BusinessLogic.DTO;
+using BusinessLogic.Infrastructure;
+using BusinessLogic.Interfaces;
+using CloudTrain.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -14,43 +17,13 @@ namespace CloudTrain.Controllers
 {
     public class AccountController : Controller
     {
-        private ApplicationUserManager UserManager
+        private IUserService UserService
         {
             get
             {
-                return HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return HttpContext.GetOwinContext().GetUserManager<IUserService>();
             }
         }
-
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> Register(RegisterModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                User user = new User { UserName = model.Email, Email = model.Email, Year = model.Year };
-                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Login", "Account");
-                }
-                else
-                {
-                    foreach (string error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error);
-                    }
-                }
-            }
-            return View(model);
-        }
-
-
-
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -60,44 +33,82 @@ namespace CloudTrain.Controllers
             }
         }
 
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login()
         {
-            ViewBag.returnUrl = returnUrl;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginModel model)
         {
+            await SetInitialDataAsync();
             if (ModelState.IsValid)
             {
-                User user = await UserManager.FindAsync(model.Email, model.Password);
-                if (user == null)
+                UserDTO userDto = new UserDTO { Email = model.Email, Password = model.Password };
+                ClaimsIdentity claim = await UserService.Authenticate(userDto);
+                if (claim == null)
                 {
                     ModelState.AddModelError("", "Неверный логин или пароль.");
                 }
                 else
                 {
-                    ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user,
-                                            DefaultAuthenticationTypes.ApplicationCookie);
                     AuthenticationManager.SignOut();
                     AuthenticationManager.SignIn(new AuthenticationProperties
                     {
                         IsPersistent = true
                     }, claim);
-                    if (String.IsNullOrEmpty(returnUrl))
-                        return RedirectToAction("Index", "Home");
-                    return Redirect(returnUrl);
+                    return RedirectToAction("Index", "Home");
                 }
             }
-            ViewBag.returnUrl = returnUrl;
             return View(model);
         }
+
         public ActionResult Logout()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register(RegisterModel model)
+        {
+            await SetInitialDataAsync();
+            if (ModelState.IsValid)
+            {
+                UserDTO userDto = new UserDTO
+                {
+                    Email = model.Email,
+                    Password = model.Password,
+                    Name = model.Name,
+                    Year = model.Year,
+                    Role = "user"
+                };
+                OperationDetails operationDetails = await UserService.Create(userDto);
+                if (operationDetails.Succedeed)
+                    return View("Index" , "Home");
+                else
+                    ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
+            }
+            return View(model);
+        }
+        private async Task SetInitialDataAsync()
+        {
+            await UserService.SetInitialData(new UserDTO
+            {
+                Email = "somemail@mail.ru",
+                Password = "ad46D_ewr3",
+                Name = "Семен Семенович Горбунков",
+                Role = "admin",
+                Year = 1991
+            }, new List<string> { "user", "admin" });
         }
     }
+
 }

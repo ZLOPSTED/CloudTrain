@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace CloudTrain.Models
+namespace DataAccess.Models
 {
     public class RouteContext: IdentityDbContext<User>
     {
@@ -17,6 +17,9 @@ namespace CloudTrain.Models
             //Database.SetInitializer<RouteContext>(new IdentityDbInit());
 
         }
+        public RouteContext(string connectionString)
+            : base(connectionString)
+        { }
 
         public DbSet<Train> Trains { get; set; }
         public DbSet<Place> Places { get; set; }

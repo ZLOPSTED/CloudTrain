@@ -8,12 +8,21 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using CloudTrain.Models;
+using DataAccess;
+using DataAccess.Models;
+using DataAccess.Identity;
 
 namespace CloudTrain.Controllers
 {
     [Authorize(Roles = "admin")]
     public class RolesController : Controller
     {
+
+        UnitOfWork unitOfWork;
+        public RolesController()
+        {
+            unitOfWork = new UnitOfWork();
+        }
         // GET: Roles
         private ApplicationRoleManager RoleManager
         {
@@ -23,6 +32,7 @@ namespace CloudTrain.Controllers
             }
         }
 
+        
         public ActionResult Index()
         {
             return View(RoleManager.Roles);

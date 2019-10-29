@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace CloudTrain.Models
+namespace DataAccess.Models
 {
     public class Train
     {

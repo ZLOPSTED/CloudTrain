@@ -9,6 +9,9 @@ using NLog;
 
 
 
+
+
+
 namespace CloudTrain.Controllers
 {
     public class HomeController : Controller
@@ -16,8 +19,12 @@ namespace CloudTrain.Controllers
         
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        RouteContext db = new RouteContext();
 
+       
+        public HomeController()
+        {
+           
+        }
 
         public string Index()
         {

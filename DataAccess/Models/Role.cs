@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CloudTrain.Models
+namespace DataAccess.Models
 {
     public class Role : IdentityRole
     {

@@ -9,11 +9,12 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace CloudTrain.Models
+namespace DataAccess.Models
 {
     public class User : IdentityUser
     {
         public int Year { get; set; }
+        public string Name { get; set; }
         public ICollection<UserPlace> Places { get; set; }
         public User()
         {
