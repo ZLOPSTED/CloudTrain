@@ -19,14 +19,14 @@ namespace DataAccess.Repositories
         public UnitOfWork()
         {
             db = new RouteContext();
-            routeRepository = new RouteRepository();
+            routeRepository = new RouteRepository(db);
         }
         public IRepository<Route> Routes
         {
             get
             {
                 if (routeRepository == null)
-                    routeRepository = new UserRepository(db);
+                    routeRepository = new RouteRepository(db);
                 return routeRepository;
             }
         }

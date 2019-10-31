@@ -87,7 +87,7 @@ namespace CloudTrain.Controllers
                     Email = model.Email,
                     Password = model.Password,
                     Name = model.Name,
-                    Year = model.Year,
+                    Birthday = model.Birthday,
                     Role = "user"
                 };
                 OperationDetails operationDetails = await UserService.Create(userDto);
@@ -106,7 +106,7 @@ namespace CloudTrain.Controllers
                 Password = "ad46D_ewr3",
                 Name = "Семен Семенович Горбунков",
                 Role = "admin",
-                Year = 1991
+                Birthday = Convert.ToDateTime("21.02.2001")
             }, new List<string> { "user", "admin" });
         }
     }

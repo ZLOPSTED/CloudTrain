@@ -12,7 +12,7 @@ namespace CloudTrain.Models
         public string Email { get; set; }
 
         [Required]
-        public int Year { get; set; }
+        public DateTime Birthday { get; set; }
 
         [Required]
         public string Name { get; set; }

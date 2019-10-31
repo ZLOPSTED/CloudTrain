@@ -1,3 +1,7 @@
+using BusinessLogic.Infrastructure;
+using CloudTrain.Util;
+using Ninject;
+using Ninject.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +20,10 @@ namespace CloudTrain
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+
+
+
         }
     }
 }

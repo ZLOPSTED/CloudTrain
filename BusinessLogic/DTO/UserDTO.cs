@@ -12,7 +12,7 @@ namespace BusinessLogic.DTO
         public string Email { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
-        public int Year { get; set; }
+        public DateTime Birthday { get; set; }
         public string Role { get; set; }
     }
 }

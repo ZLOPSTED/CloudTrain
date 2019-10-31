@@ -1,4 +1,4 @@
-﻿using CloudTrain.ViewModels;
+﻿/*using CloudTrain.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -107,4 +107,4 @@ namespace CloudTrain.Controllers
             return RedirectToAction("Index");
         }
     }
-}
+}*/

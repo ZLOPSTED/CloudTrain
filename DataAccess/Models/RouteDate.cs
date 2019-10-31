@@ -7,12 +7,9 @@ using System.Web;
 
 namespace DataAccess.Models
 {
-    public class RouteTrain
+    public class RouteDate
     {
-        public Train Train { get; set; }
-
-        [Key, Column(Order = 0)]
-        public int TrainId { get; set; }
+        
         public Route Route{ get; set; }
 
         [Key, Column(Order = 1)]

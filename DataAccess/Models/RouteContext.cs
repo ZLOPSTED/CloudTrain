@@ -28,8 +28,7 @@ namespace DataAccess.Models
         public DbSet<Carriage> Carriages { get; set; }
         public DbSet<RouteStation> RouteStations { get; set; }
         public DbSet<UserPlace> UserPlaces { get; set; }
-        public DbSet<PurchasedPlaces> PurchasedPlaces { get; set; }
-        public DbSet<RouteTrain> RouteTrains{ get; set; }
+        public DbSet<RouteDate> RouteTrains{ get; set; }
 
 
 

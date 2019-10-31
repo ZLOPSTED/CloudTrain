@@ -13,7 +13,7 @@ namespace DataAccess.Models
 {
     public class User : IdentityUser
     {
-        public int Year { get; set; }
+        public DateTime Birthday { get; set; }
         public string Name { get; set; }
         public ICollection<UserPlace> Places { get; set; }
         public User()

@@ -17,5 +17,13 @@ namespace DataAccess.Models
         [Key, Column(Order = 1)]
         public int PlaceId { get; set; }
         public Place Place { get; set; }
-    }
+        public DateTime TimeStartTrip { get; set; }
+        public DateTime TimeFinishTrip { get; set; }
+        public string ClientName { get; set; }
+        public bool WithBed { get; set; }
+        public bool  Drink { get; set; }
+        public bool  Child { get; set; }
+
+
+}
 }

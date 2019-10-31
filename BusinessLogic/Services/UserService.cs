@@ -28,7 +28,7 @@ namespace BusinessLogic.Services
             User user = await Database.UserManager.FindByEmailAsync(userDto.Email);
             if (user == null)
             {
-                user = new User { Email = userDto.Email, Name = userDto.Name , Year = userDto.Year };
+                user = new User { Email = userDto.Email, Name = userDto.Name , Birthday = userDto.Birthday };
                 var result = await Database.UserManager.CreateAsync(user, userDto.Password);
                 if (result.Errors.Count() > 0)
                     return new OperationDetails(false, result.Errors.FirstOrDefault(), "");

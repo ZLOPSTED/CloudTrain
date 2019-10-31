@@ -26,7 +26,7 @@ namespace BusinessLogic.Services
             Route route = new Route
             {
 
-                Name = routeDto.Name,
+                Description = routeDto.Description,
                 CoupeFare = routeDto.CoupeFare,
                 ReservedSeatFare = routeDto.ReservedSeatFare,
                 GeneralFare = routeDto.GeneralFare 
@@ -52,7 +52,7 @@ namespace BusinessLogic.Services
             if (route == null)
                 throw new ValidationException("маршрут не найден", "");
 
-            return new RouteDTO { Name = route.Name, Id = route.Id, CoupeFare=route.CoupeFare, GeneralFare=route.GeneralFare, ReservedSeatFare= route.ReservedSeatFare };
+            return new RouteDTO { Description = route.Description, Id = route.Id, CoupeFare=route.CoupeFare, GeneralFare=route.GeneralFare, ReservedSeatFare= route.ReservedSeatFare };
         }
 
         public void Dispose()

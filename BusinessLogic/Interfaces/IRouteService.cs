@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Interfaces
 {
-    interface IRouteService
+    public interface IRouteService
     {
         void MakeRoute(RouteDTO routeDto);
         RouteDTO GetRoute(int? id);
