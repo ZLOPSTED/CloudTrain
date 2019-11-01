@@ -11,8 +11,12 @@ namespace DataAccess.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IRepository<Route>Routes { get; }
+        IRepository<Train> Trains { get; }
+        IRepository<Carriage> Carriages { get; }
+        IRepository<Place> Places { get; }
+        IRepository<Station> Stations { get; }
 
-       
+
         void Save();
     }
 }

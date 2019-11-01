@@ -1,5 +1,8 @@
-﻿using System;
+﻿using DataAccess.Interfaces;
+using DataAccess.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,5 +17,8 @@ namespace DataAccess.Interfaces
         void Create(T item);
         void Update(T item);
         void Delete(int id);
+        void Delete(T item);
+       
+      
     }
 }

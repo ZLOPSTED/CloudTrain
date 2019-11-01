@@ -9,8 +9,7 @@ namespace DataAccess.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        /*public int? RouteId { get; set; }
-        public Route Route { get; set; }*/
+       
         public ICollection<RouteStation> Routes { get; set; }
         public Station()
         {

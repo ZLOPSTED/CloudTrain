@@ -86,8 +86,8 @@
     <Compile Include="Interfaces\IUserManager.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\IdentityUnitOfWork.cs" />
-    <Compile Include="Repositories\RouteRepository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Models\Carriage.cs" />
     <Compile Include="Models\Place.cs" />
