@@ -57,6 +57,21 @@ namespace BusinessLogic.Services
             return new TrainDTO { Description = train.Description, Id = train.Id, Name=train.Name };
         }
 
+
+
+        public void EditTrain(TrainDTO trainDto)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TrainDTO, Train>()).CreateMapper();
+            var item = mapper.Map<TrainDTO, Train>(trainDto);
+            _Database.Trains.Update(item);
+        }
+
+
+        public void DeleteTrain(int id)
+        {
+            _Database.Trains.Delete(id);
+        }
+
         public void Dispose()
         {
             _Database.Dispose();

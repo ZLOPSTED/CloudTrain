@@ -8,6 +8,7 @@ namespace DataAccess.Models
     public class Route
     {
         public int Id{get; set;}
+        public string Name { get; set; }
         public float CoupeFare { get; set; } // цена за купе
         public float ReservedSeatFare { get; set; }  // цена за плацкарт
         public float GeneralFare { get; set; }// цена за общий

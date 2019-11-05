@@ -8,14 +8,17 @@ namespace CloudTrain.Models
 {
     public class RegisterModel
     {
+
+        [Required]
+        [DataType(DataType.Text)]
+        public string Name { get; set; }
+
         [Required]
         public string Email { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime Birthday { get; set; }
-
-        [Required]
-        public string Name { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

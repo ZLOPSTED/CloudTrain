@@ -6,7 +6,8 @@ namespace DataAccess.Models
     public class Carriage
     {
         public int Id { get; set; }
-        public int Number { get; set; }
+        public string Name { get; set; }
+        public int? Number { get; set; }
         public string Type { get; set; }   //coupe, reserved seat, general
         public Train Train { get; set; }
         public int? TrainId { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,9 @@ namespace BusinessLogic.Services
 
             Station station = new Station
             {
-                Name= stationDto.Name
+                Name= stationDto.Name,
+                Locality = stationDto.Locality,
+                Description = stationDto.Description
             };
 
             _Database.Stations.Create(station);
@@ -51,8 +54,25 @@ namespace BusinessLogic.Services
             {
                 throw new ValidationException("станцию не найдено", "");
             }
-            return new StationDTO { Id = station.Id, Name = station.Name };
+            return new StationDTO { Id = station.Id, Name = station.Name, Description = station.Description, Locality=station.Locality };
         }
+
+
+        public void EditStation(StationDTO stationDto)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<StationDTO, Station>()).CreateMapper();
+            var item =mapper.Map<StationDTO, Station>(stationDto);
+            _Database.Stations.Update(item);
+        }
+
+
+
+
+        public void DeleteStation(int id)
+        {
+            _Database.Stations.Delete(id);
+        }
+
 
         public void Dispose()
         {

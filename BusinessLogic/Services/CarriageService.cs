@@ -25,15 +25,21 @@ namespace BusinessLogic.Services
 
             Carriage carriage = new Carriage
             {
-                Number = carriageDto.Number,
+                Name = carriageDto.Name,
                 Type= carriageDto.Type,
-                TrainId = carriageDto.TrainId,
-                IsUsed= carriageDto.IsUsed,
                 Description=carriageDto.Description
             };
-
             _Database.Carriages.Create(carriage);
+            
+
+            for (int i=1; i<= carriageDto.NumPlaces; i++)
+            {
+                Place place = new Place { CarriageId = carriage.Id, Number = i };
+                _Database.Places.Create(place);
+            }
+
             _Database.Save();
+
         }
 
         public IEnumerable<CarriageDTO> GetCarriages()
@@ -57,8 +63,26 @@ namespace BusinessLogic.Services
             }
                 
 
-            return new CarriageDTO { Id = carriage.Id, Number=carriage.Number, Description=carriage.Description, IsUsed=carriage.IsUsed, TrainId=carriage.TrainId, Type=carriage.Type};
+            return new CarriageDTO { Id = carriage.Id, Number=carriage.Number, Description=carriage.Description, IsUsed=carriage.IsUsed, TrainId=carriage.TrainId, Type=carriage.Type, Name=carriage.Name};
         }
+
+
+
+
+        public void EditCarriage(CarriageDTO carriageDto)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<CarriageDTO, Carriage>()).CreateMapper();
+            var item = mapper.Map<CarriageDTO, Carriage>(carriageDto);
+            _Database.Carriages.Update(item);
+        }
+
+
+        public void DeleteCarriage(int id)
+        {
+            _Database.Carriages.Delete(id);
+        }
+
+
 
         public void Dispose()
         {

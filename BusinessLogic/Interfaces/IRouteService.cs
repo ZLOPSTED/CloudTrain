@@ -12,6 +12,10 @@ namespace BusinessLogic.Interfaces
         void MakeRoute(RouteDTO routeDto);
         RouteDTO GetRoute(int? id);
         IEnumerable<RouteDTO> GetRoutes();
+
+
+
+        void DeleteRoute(int id);
         void Dispose();
     }
 }

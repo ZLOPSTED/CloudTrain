@@ -195,6 +195,7 @@
     <Compile Include="Models\EditRoleModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\RouteStationViewModel.cs" />
     <Compile Include="Models\RouteViewModel.cs" />
     <Compile Include="Models\StationViewModel.cs" />
     <Compile Include="Models\TrainViewModel.cs" />
@@ -273,8 +274,22 @@
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Home\MakeRoute.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\MakeStation.cshtml" />
+    <Content Include="Views\Admin\CreateStation.cshtml" />
+    <Content Include="Views\Admin\ShowStations.cshtml" />
+    <Content Include="Views\Admin\CreateTrain.cshtml" />
+    <Content Include="Views\Admin\ShowTrains.cshtml" />
+    <Content Include="Views\Admin\ShowCarriages.cshtml" />
+    <Content Include="Views\Admin\CreateCarriage.cshtml" />
+    <Content Include="Views\Home\UserPage.cshtml" />
+    <Content Include="Views\Account\SuccessRegister.cshtml" />
+    <Content Include="Views\Admin\EditStation.cshtml" />
+    <Content Include="Views\Admin\EditTrain.cshtml" />
+    <Content Include="Views\Admin\EditCarriage.cshtml" />
+    <Content Include="Views\Admin\ShowRoutes.cshtml" />
+    <Content Include="Views\Admin\CreateRoute.cshtml" />
+    <Content Include="Views\Admin\CreateRouteStation.cshtml" />
+    <Content Include="Views\Home\ShowRoutes.cshtml" />
+    <Content Include="Views\Home\RouteDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

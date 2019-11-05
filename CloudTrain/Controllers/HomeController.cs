@@ -16,56 +16,74 @@ namespace CloudTrain.Controllers
 {
     public class HomeController : Controller
     {
-        
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
 
-        IRouteService routeService;
-        public HomeController(IRouteService serv)
+        private IStationService _stationService;
+        private ITrainService _trainService;
+        private ICarriageService _carriageService;
+        private IRouteService _routeService;
+        private IRouteStationService _routeStationService;
+
+        public HomeController(IStationService stationservice, IRouteService routeService, ITrainService trainservice, ICarriageService carriageservice, IRouteStationService routeStationService)
         {
-            routeService = serv;
+            _stationService = stationservice;
+            _trainService = trainservice;
+            _carriageService = carriageservice;
+            _routeService = routeService;
+            _routeStationService = routeStationService;
         }
 
-       
-
-       
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult ShowRoutes()
         {
-            IEnumerable<RouteDTO> routeDtos = routeService.GetRoutes();
+            IEnumerable<RouteDTO> routeDtos = _routeService.GetRoutes();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<RouteDTO, RouteViewModel>()).CreateMapper();
             var routes = mapper.Map<IEnumerable<RouteDTO>, List<RouteViewModel>>(routeDtos);
+
+
+
             return View(routes);
         }
 
 
-        [HttpGet]
-        public ActionResult MakeRoute()
+
+        public ActionResult RouteDetails(int? id)
         {
-            return View();
-        }
-
-
-
-        [HttpPost]
-        public ActionResult MakeRoute(RouteViewModel route)
-        {
-            try
+            if(id == 0)
             {
-                var routeDto = new RouteDTO { Description = route.Description, CoupeFare =route.CoupeFare, GeneralFare=route.GeneralFare, ReservedSeatFare=route.ReservedSeatFare };
-                routeService.MakeRoute(routeDto);
-                return Content("Вы успешно создали маршрут");
+                throw new ValidationException("Не установлено id пути", "");
             }
-            catch (ValidationException ex)
-            {
-                ModelState.AddModelError(ex.Property, ex.Message);
-            }
-            return View(route);
-        }
-        protected override void Dispose(bool disposing)
-        {
-            routeService.Dispose();
-            base.Dispose(disposing);
+
+            var route = _routeService.GetRoute(id);
+            /*            var stations = _stationService.GetStations();
+                        var s = from st in stations
+                                where (from u in st.Routes
+                                                  where u.RouteId == route.Id
+                                                  select u.RouteId).Contains(route.Id)
+                                select st;
+            */
+            var routeStations = _routeStationService.GetRouteStationsByRoute(route.Id);
+            
+           
+
+
+            IEnumerable<RouteDTO> routeDtos = _routeService.GetRoutes();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<RouteDTO, RouteViewModel>()).CreateMapper();
+            var routeView = mapper.Map<RouteDTO, RouteViewModel>(route);
+
+            var mapper2 = new MapperConfiguration(cfg => cfg.CreateMap<RouteStationDTO, RouteStationViewModel>()).CreateMapper();
+            var stationsView = mapper2.Map<IEnumerable<RouteStationDTO>,List< RouteStationViewModel>>(routeStations);
+
+            ViewBag.Stations = stationsView;
+
+
+            return View(routeView);
+
+            
+
         }
     }
 }

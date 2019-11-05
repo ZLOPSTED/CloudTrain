@@ -9,17 +9,24 @@ namespace DataAccess.Models
 {
     public class RouteContext: IdentityDbContext<User>
     {
-        public RouteContext() : base("ConnectionRoute")
+      /*  public RouteContext() : base("ConnectionRoute")
         {
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<RouteContext>());
+            //;
             Database.SetInitializer(new CreateDatabaseIfNotExists<RouteContext>());
             //Database.SetInitializer(new DropCreateDatabaseAlways< RouteContext > ());
             //Database.SetInitializer<RouteContext>(new IdentityDbInit());
 
-        }
+        }*/
         public RouteContext(string connectionString)
             : base(connectionString)
-        { }
+        {
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<RouteContext>());
+
+
+           
+        }
+
+        
 
         public DbSet<Train> Trains { get; set; }
         public DbSet<Place> Places { get; set; }
@@ -32,13 +39,12 @@ namespace DataAccess.Models
 
 
 
-        public static RouteContext Create()
+/*        public static RouteContext Create()
         {
             return new RouteContext();
-        }
+        }*/
     }
 
-
-
     
+
 }

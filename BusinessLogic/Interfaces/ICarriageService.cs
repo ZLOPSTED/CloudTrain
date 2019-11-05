@@ -14,6 +14,9 @@ namespace BusinessLogic.Interfaces
         void MakeCarriage(CarriageDTO carriageDto);
         CarriageDTO GetCarriage(int? id);
         IEnumerable<CarriageDTO> GetCarriages();
+
+        void EditCarriage(CarriageDTO carriageDto);
+        void DeleteCarriage(int id);
         void Dispose();
     }
 }

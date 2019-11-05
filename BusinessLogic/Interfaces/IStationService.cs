@@ -12,6 +12,8 @@ namespace BusinessLogic.Interfaces
         void MakeStation(StationDTO stationDto);
         StationDTO GetStation(int? id);
         IEnumerable<StationDTO> GetStations();
+        void EditStation(StationDTO stationDto);
+        void DeleteStation(int id);
         void Dispose();
     }
 }

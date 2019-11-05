@@ -12,11 +12,6 @@ namespace DataAccess.Identity
                 : base(store)
         {
         }
-       /* public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
-        {
-            RouteContext db = context.Get<RouteContext>();
-            ApplicationUserManager manager = new ApplicationUserManager(new UserStore<User>(db));
-            return manager;
-        }*/
+
     }
 }

@@ -1,0 +1,51 @@
+﻿@model CloudTrain.Models.RouteViewModel
+
+    <div>
+        <h4>RouteViewModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dd>
+                @Html.DisplayFor(model => model.CoupeFare)
+            </dd>
+
+
+            <dd>
+                @Html.DisplayFor(model => model.ReservedSeatFare)
+            </dd>
+
+
+            <dd>
+                @Html.DisplayFor(model => model.GeneralFare)
+            </dd>
+
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+
+            <dd>
+                @Html.DisplayFor(model => model.TrainId)
+            </dd>
+
+        </dl>
+
+
+
+        @foreach (var a in ViewBag.Stations)
+        {
+            <hr />
+            <div>@a.StationName</div>
+            <div>@a.DateArrival</div>
+            <div>@a.DateDeparture</div>
+            
+            <hr />
+        }
+    </div>
+

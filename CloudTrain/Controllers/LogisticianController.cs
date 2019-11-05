@@ -6,10 +6,12 @@ using System.Web.Mvc;
 
 namespace CloudTrain.Controllers
 {
-    [Authorize(Roles = "logistian")]
+    [Authorize(Roles = "logistician")]
+
     public class LogisticianController : Controller
     {
-        // GET: Logistician
+        //на список маршрутов добавить список поездов и кнопку добавить и на список вагонов тоже потом показ отсортированых по дате маршрутов
+        
         public ActionResult Index()
         {
             return View();

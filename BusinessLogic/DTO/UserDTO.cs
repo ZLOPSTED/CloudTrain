@@ -13,6 +13,6 @@ namespace BusinessLogic.DTO
         public string Password { get; set; }
         public string Name { get; set; }
         public DateTime Birthday { get; set; }
-        public string Role { get; set; }
+        
     }
 }

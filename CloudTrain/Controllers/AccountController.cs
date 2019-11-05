@@ -42,7 +42,7 @@ namespace CloudTrain.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginModel model)
         {
-            await SetInitialDataAsync();
+
             if (ModelState.IsValid)
             {
                 UserDTO userDto = new UserDTO { Email = model.Email, Password = model.Password };
@@ -58,7 +58,7 @@ namespace CloudTrain.Controllers
                     {
                         IsPersistent = true
                     }, claim);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("UserPage", "Home"); 
                 }
             }
             return View(model);
@@ -67,7 +67,7 @@ namespace CloudTrain.Controllers
         public ActionResult Logout()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("UserPage", "Home");
         }
 
         public ActionResult Register()
@@ -79,7 +79,7 @@ namespace CloudTrain.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterModel model)
         {
-            await SetInitialDataAsync();
+
             if (ModelState.IsValid)
             {
                 UserDTO userDto = new UserDTO
@@ -87,27 +87,16 @@ namespace CloudTrain.Controllers
                     Email = model.Email,
                     Password = model.Password,
                     Name = model.Name,
-                    Birthday = model.Birthday,
-                    Role = "user"
+                    Birthday = model.Birthday
+
                 };
                 OperationDetails operationDetails = await UserService.Create(userDto);
                 if (operationDetails.Succedeed)
-                    return View("Index" , "Home");
+                    return View("SuccessRegister");
                 else
                     ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
             }
             return View(model);
-        }
-        private async Task SetInitialDataAsync()
-        {
-            await UserService.SetInitialData(new UserDTO
-            {
-                Email = "somemail@mail.ru",
-                Password = "ad46D_ewr3",
-                Name = "Семен Семенович Горбунков",
-                Role = "admin",
-                Birthday = Convert.ToDateTime("21.02.2001")
-            }, new List<string> { "user", "admin" });
         }
     }
 

@@ -27,11 +27,13 @@ namespace CloudTrain.Util
         }
         private void AddBindings()
         {
+           
             kernel.Bind<ICarriageService>().To<CarriageService>();
             kernel.Bind<ITrainService>().To<TrainService>();
             kernel.Bind<IRouteService>().To<RouteService>();
             kernel.Bind<IStationService>().To<StationService>();
-           
+            kernel.Bind<IRouteStationService>().To<RouteStationService>();
+
         }
     }
 }

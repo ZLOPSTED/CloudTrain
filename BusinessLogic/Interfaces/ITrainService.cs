@@ -12,6 +12,9 @@ namespace BusinessLogic.Interfaces
         void MakeTrain(TrainDTO trainDto);
         TrainDTO GetTrain(int? id);
         IEnumerable<TrainDTO> GetTrains();
+
+        void EditTrain(TrainDTO trainDto);
+        void DeleteTrain(int id);
         void Dispose();
     }
 }
