@@ -54,7 +54,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "EditCarriage", new { id = item.Id }) |
-
+            @Html.ActionLink("Add Carriage to Train", "AppointCarriageToTrain" ,"Logistician",  new { id = item.Id } , null) |
             @Html.ActionLink("Delete", "DeleteCarriage", new { id = item.Id })
         </td>
     </tr>

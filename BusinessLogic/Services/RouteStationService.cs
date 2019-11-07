@@ -27,11 +27,11 @@ namespace BusinessLogic.Services
 
             RouteStation routeStation = new RouteStation
             {
-                DateArrival =  routeStationDto.DateArrival,
-                DateDeparture= routeStationDto.DateDeparture,
+                TimeArrival =  routeStationDto.TimeArrival,
+                TimeDeparture= routeStationDto.TimeDeparture,
                 RouteId = routeStationDto.RouteId,
                 StationId= routeStationDto.StationId,
-                StationName = routeStationDto.StationName
+               
 
             };
 
@@ -44,7 +44,8 @@ namespace BusinessLogic.Services
         {
             // применяем автомаппер для проекции одной коллекции на другую
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<RouteStation, RouteStationDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<RouteStation>, List<RouteStationDTO>>(_Database.RouteStations.GetAll());
+            var a = mapper.Map<IEnumerable<RouteStation>, List<RouteStationDTO>>(_Database.RouteStations.GetAll());
+            return a;
         }
 
         public RouteStationDTO GetRouteStation(int? id)
@@ -61,7 +62,7 @@ namespace BusinessLogic.Services
             }
 
 
-            return new RouteStationDTO { DateDeparture= routeStation.DateDeparture , DateArrival = routeStation.DateArrival, RouteId=routeStation.RouteId, StationId=routeStation.StationId };
+            return new RouteStationDTO { TimeDeparture= routeStation.TimeDeparture , TimeArrival = routeStation.TimeArrival, RouteId=routeStation.RouteId, StationId=routeStation.StationId };
         }
 
 

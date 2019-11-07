@@ -20,11 +20,23 @@ namespace BusinessLogic.Services
         {
             _Database = uow;
         }
+
+
+        public IEnumerable<RouteDTO> GetRoutesWithoutTrain()
+        {
+            IEnumerable<Route> r = new List<Route>();
+            r = from a in _Database.Routes.GetAll()
+                                     where a.TrainId == null
+                                     select a;
+            var mapper = new MapperConfiguration(cfg => { cfg.CreateMap<Route, RouteDTO>(); cfg.CreateMap<RouteStation, RouteStationDTO>(); }).CreateMapper();
+            return mapper.Map<IEnumerable<Route>, List<RouteDTO>>(r);
+        }
+
+
+
+
         public void MakeRoute(RouteDTO routeDto)
         {
-
-           
-
 
             Route route = new Route
             {
@@ -44,6 +56,15 @@ namespace BusinessLogic.Services
             _Database.Save();
         }
 
+
+
+
+        public void EditRoute(RouteDTO routeDto)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<RouteDTO, Route>()).CreateMapper();
+            var item = mapper.Map<RouteDTO, Route>(routeDto);
+            _Database.Routes.Update(item);
+        }
         public IEnumerable<RouteDTO> GetRoutes()
         {
             // применяем автомаппер для проекции одной коллекции на другую

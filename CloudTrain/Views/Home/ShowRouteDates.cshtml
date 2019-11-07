@@ -1,0 +1,121 @@
+﻿@model CloudTrain.Models.SearchRouteDateViewModel
+@using CloudTrain.Models;
+@using System.Collections.Generic;
+
+
+
+<div>
+    @using (Html.BeginForm("ShowRouteDates", "Home", FormMethod.Post))
+    {
+        <div>
+            Станция отправки
+            @Html.DropDownListFor(model => model.StartStationId, ViewBag.Stations as SelectList)
+        </div>
+        <div>
+            Станция прибытия
+            @Html.DropDownListFor(model => model.FinishStationId, ViewBag.Stations as SelectList)
+        </div>
+        <div>
+            Дата отправки
+            @Html.EditorFor(model => model.RouteDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+        </div>
+        <div>
+            <input type="submit" value="Отправить" />
+        </div>
+
+    }
+</div>
+
+
+@if (Model != null)
+{
+
+
+<table class="table">
+    <tr>
+        <th>
+            Маршрут
+        </th>
+        <th>
+            Цена за купе
+        </th>
+        <th>
+            Цена за плацкарт
+        </th>
+        <th>
+            Цена за общий
+        </th>
+        <th>
+            Описание
+        </th>
+        <th>
+            Поезд
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewBag.Routes)
+    {
+
+        List<RouteStationViewModel> rStations = new List<RouteStationViewModel>();
+        rStations = ViewBag.RouteStations;
+
+
+
+        var p = from a in rStations
+                where a.RouteId == item.Id
+                select a;
+
+        List<RouteStationViewModel> routeStations = new List<RouteStationViewModel>();
+        foreach(var h in p)
+        {
+            routeStations.Add(h);
+        }
+
+        routeStations.OrderByDescending(u => u.TimeArrival);
+
+
+
+
+
+        var userStartTime = routeStations.FirstOrDefault(z => z.StationId == Model.StartStationId).TimeArrival;
+        var userFinishTime = routeStations.FirstOrDefault(o => o.StationId == Model.FinishStationId).TimeArrival;
+
+
+
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @Math.Round((item.CoupeFare * Convert.ToInt32(userFinishTime - userStartTime)) / Convert.ToInt32(routeStations[routeStations.Count].TimeArrival - routeStations[0].TimeArrival), 2)
+                    </td>
+                    <td>
+                        @Math.Round((item.ReservedSeatFare * Convert.ToInt32(userFinishTime - userStartTime)) / Convert.ToInt32(routeStations[routeStations.Count].TimeArrival - routeStations[0].TimeArrival), 2)
+                    </td>
+                    <td>
+                        @Math.Round((item.GeneralFare * Convert.ToInt32(userFinishTime - userStartTime)) / Convert.ToInt32(routeStations[routeStations.Count].TimeArrival - routeStations[0].TimeArrival), 2)
+                        
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td>
+                        @foreach (var a in ViewBag.Trains)
+                        {
+                            if (a.Id == item.TrainId)
+                            {
+                                <h3>a.Name</h3>
+                            }
+                        }
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+
+                    </td>
+                </tr>
+    }
+
+    </table>
+}

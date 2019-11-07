@@ -160,30 +160,37 @@
   <ItemGroup>
     <Compile Include="DTO\CarriageDTO.cs" />
     <Compile Include="DTO\PlaceDTO.cs" />
+    <Compile Include="DTO\RouteDateDTO.cs" />
     <Compile Include="DTO\RouteDTO.cs" />
     <Compile Include="DTO\RouteStationDTO.cs" />
+    <Compile Include="DTO\SearchRouteDateDTO.cs" />
     <Compile Include="DTO\StationDTO.cs" />
     <Compile Include="DTO\TrainDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
+    <Compile Include="DTO\UserPlaceDTO.cs" />
     <Compile Include="Infrastructure\OperationDetails.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="Interfaces\ICarriageService.cs" />
     <Compile Include="Interfaces\IPlaceService.cs" />
+    <Compile Include="Interfaces\IRouteDateService.cs" />
     <Compile Include="Interfaces\IRouteService.cs" />
     <Compile Include="Interfaces\IRouteStationService.cs" />
     <Compile Include="Interfaces\IServiceCreator.cs" />
     <Compile Include="Interfaces\IStationService.cs" />
     <Compile Include="Interfaces\ITrainService.cs" />
+    <Compile Include="Interfaces\IUserPlaceService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CarriageService.cs" />
     <Compile Include="Services\PlaceService.cs" />
+    <Compile Include="Services\RouteDateService.cs" />
     <Compile Include="Services\RouteService.cs" />
     <Compile Include="Services\RouteStationService.cs" />
     <Compile Include="Services\ServiceCreator.cs" />
     <Compile Include="Services\StationService.cs" />
     <Compile Include="Services\TrainService.cs" />
+    <Compile Include="Services\UserPlaceService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>

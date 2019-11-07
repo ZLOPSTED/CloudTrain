@@ -11,10 +11,12 @@ namespace BusinessLogic.Interfaces
     public interface ICarriageService
     {
 
+        IEnumerable<CarriageDTO> GetFreeCarriages();
         void MakeCarriage(CarriageDTO carriageDto);
         CarriageDTO GetCarriage(int? id);
         IEnumerable<CarriageDTO> GetCarriages();
 
+        IEnumerable<CarriageDTO> GetCarriagesWithoutTrain();
         void EditCarriage(CarriageDTO carriageDto);
         void DeleteCarriage(int id);
         void Dispose();

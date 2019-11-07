@@ -17,9 +17,9 @@ namespace DataAccess.Models
         public int RouteId { get; set; }
         public Station Station { get; set; }
         public Route Route { get; set; }
-        public DateTime DateArrival { get; set; }
-        public DateTime DateDeparture { get; set; }
-        public string StationName { get; set; }
+        public DateTime TimeArrival { get; set; }
+        public DateTime TimeDeparture { get; set; }
+        
 
     }
 }

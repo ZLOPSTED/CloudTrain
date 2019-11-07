@@ -12,7 +12,6 @@ namespace DataAccess.Models
         public Train Train { get; set; }
         public int? TrainId { get; set; }
 
-        public bool IsUsed { get; set; }
 
         public string Description { get; set; }
         public ICollection<Place> Places { get; set; }

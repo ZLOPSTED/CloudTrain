@@ -12,8 +12,10 @@ namespace DataAccess.Models
         
         public Route Route{ get; set; }
 
-        [Key, Column(Order = 1)]
+       
         public int RouteId { get; set; }
+
+        [Key, Column(Order = 1)]
         public DateTime Date { get; set; }
     }
 }

@@ -28,6 +28,11 @@ namespace DataAccess.Repositories
         private GenericRepository<RouteStation> _routeStationRepository;
 
 
+        private GenericRepository<RouteDate> _routeDateRepository;
+
+        private GenericRepository<UserPlace> _userPlaceRepository;
+
+        
         public UnitOfWork(string connectionString)
         {
             _db = new RouteContext( connectionString);
@@ -37,6 +42,8 @@ namespace DataAccess.Repositories
             _carriageRepository = new GenericRepository<Carriage>(_db);
             _placeRepository = new GenericRepository<Place>(_db); 
             _stationRepository = new GenericRepository<Station>(_db);
+            _userPlaceRepository = new GenericRepository<UserPlace>(_db);
+            _routeDateRepository = new GenericRepository<RouteDate>(_db);
         }
         public IRepository<Route> Routes
         {
@@ -58,6 +65,24 @@ namespace DataAccess.Repositories
             }
         }
 
+        public IRepository<RouteDate> RouteDates
+        {
+            get
+            {
+                if (_routeDateRepository == null)
+                    _routeDateRepository = new GenericRepository<RouteDate>(_db);
+                return _routeDateRepository;
+            }
+        }
+        public IRepository<UserPlace> UserPlaces
+        {
+            get
+            {
+                if (_userPlaceRepository == null)
+                    _userPlaceRepository = new GenericRepository<UserPlace>(_db);
+                return _userPlaceRepository;
+            }
+        }
 
 
 

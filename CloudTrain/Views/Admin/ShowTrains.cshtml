@@ -29,9 +29,10 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditTrain", new {  id=item.Id  }) |
-            
-            @Html.ActionLink("Delete", "DeleteTrain", new {  id=item.Id  })
+            @Html.ActionLink("Edit", "EditTrain", new { id = item.Id }) |
+           
+            @Html.ActionLink("Delete", "DeleteTrain", new { id = item.Id })
+           
         </td>
     </tr>
 }

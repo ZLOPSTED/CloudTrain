@@ -33,6 +33,8 @@ namespace CloudTrain.Util
             kernel.Bind<IRouteService>().To<RouteService>();
             kernel.Bind<IStationService>().To<StationService>();
             kernel.Bind<IRouteStationService>().To<RouteStationService>();
+            kernel.Bind<IRouteDateService>().To<RouteDateService>();
+            kernel.Bind<IUserPlaceService>().To<UserPlaceService>();
 
         }
     }

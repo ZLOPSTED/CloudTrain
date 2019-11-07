@@ -109,6 +109,8 @@ namespace CloudTrain.Controllers
             IEnumerable<TrainDTO> trainDtos = _trainService.GetTrains();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TrainDTO, TrainViewModel>()).CreateMapper();
             var trains = mapper.Map<IEnumerable<TrainDTO>, List<TrainViewModel>>(trainDtos);
+
+            ViewBag.Carriages=_carriageService.GetFreeCarriages();
             return View(trains);
         }
 
@@ -177,7 +179,7 @@ namespace CloudTrain.Controllers
 
         public ActionResult ShowCarriages()
         {
-            IEnumerable<CarriageDTO> carriageDtos = _carriageService.GetCarriages();
+            IEnumerable<CarriageDTO> carriageDtos = _carriageService.GetCarriagesWithoutTrain();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<CarriageDTO, CarriageViewModel>()).CreateMapper();
             var trains = mapper.Map<IEnumerable<CarriageDTO>, List<CarriageViewModel>>(carriageDtos);
             return View(trains);
@@ -197,7 +199,7 @@ namespace CloudTrain.Controllers
         {
             try
             {
-                var carriageDto = new CarriageDTO {Name = carriage.Name, Description= carriage.Description,  IsUsed = false , Type= carriage.Type , NumPlaces= carriage.NumPlaces };
+                var carriageDto = new CarriageDTO {Name = carriage.Name, Description= carriage.Description , Type= carriage.Type , NumPlaces= carriage.NumPlaces };
                 _carriageService.MakeCarriage(carriageDto);
                 return Content("Вы успешно создали вагон");
             }
@@ -295,14 +297,8 @@ namespace CloudTrain.Controllers
         {
             try
             {
-                DateTime xDateDeparture = route.DateDeparture.AddHours(route.TimeDeparture.Hour);
-                xDateDeparture= xDateDeparture.AddMinutes(route.TimeDeparture.Minute);
-
-                DateTime xDateArrival= route.DateArrival.AddHours(route.TimeArrival.Hour);
-                xDateArrival= xDateArrival.AddMinutes(route.TimeArrival.Minute);
-
                 
-                var routeStationDTO = new RouteStationDTO { DateArrival= xDateArrival, DateDeparture= xDateDeparture , RouteId = route.RouteId , StationId= route.StationId, StationName = _stationService.GetStation(route.StationId).Name };
+                var routeStationDTO = new RouteStationDTO { TimeArrival= route.TimeArrival, TimeDeparture= route.TimeDeparture , RouteId = route.RouteId , StationId= route.StationId, StationName = _stationService.GetStation(route.StationId).Name };
 
                 _routeStationService.MakeRouteStation(routeStationDTO);
                 return Content("Вы успешно создали маршрут");
@@ -320,7 +316,7 @@ namespace CloudTrain.Controllers
         [HttpGet]
         public ActionResult ShowRoutes()
         {
-            IEnumerable<RouteDTO> routeDtos = _routeService.GetRoutes();
+            var routeDtos = _routeService.GetRoutesWithoutTrain();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<RouteDTO, RouteViewModel>()).CreateMapper();
             var routes = mapper.Map<IEnumerable<RouteDTO>, List<RouteViewModel>>(routeDtos);
             return View(routes);
@@ -342,6 +338,8 @@ namespace CloudTrain.Controllers
             _stationService.Dispose();
             _trainService.Dispose();
             _carriageService.Dispose();
+            _routeService.Dispose();
+            _routeStationService.Dispose();
             base.Dispose(disposing);
         }
 

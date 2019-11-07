@@ -195,10 +195,13 @@
     <Compile Include="Models\EditRoleModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\RouteDateViewModel.cs" />
     <Compile Include="Models\RouteStationViewModel.cs" />
     <Compile Include="Models\RouteViewModel.cs" />
+    <Compile Include="Models\SearchRouteDateViewModel.cs" />
     <Compile Include="Models\StationViewModel.cs" />
     <Compile Include="Models\TrainViewModel.cs" />
+    <Compile Include="Models\UserPlaceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\NinjectDependencyResolver.cs" />
   </ItemGroup>
@@ -290,10 +293,14 @@
     <Content Include="Views\Admin\CreateRouteStation.cshtml" />
     <Content Include="Views\Home\ShowRoutes.cshtml" />
     <Content Include="Views\Home\RouteDetails.cshtml" />
+    <Content Include="Views\Logistician\AppointCarriageToTrain.cshtml" />
+    <Content Include="Views\Logistician\CreateRouteDate.cshtml" />
+    <Content Include="Views\Logistician\ShowRouteDate.cshtml" />
+    <Content Include="Views\Logistician\AppointTrainToRoute.cshtml" />
+    <Content Include="Views\Home\ShowRouteDates.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Logistician\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

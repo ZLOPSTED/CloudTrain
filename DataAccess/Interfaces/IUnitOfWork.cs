@@ -16,6 +16,9 @@ namespace DataAccess.Interfaces
         IRepository<Place> Places { get; }
         IRepository<Station> Stations { get; }
 
+        IRepository<RouteDate> RouteDates { get; }
+        IRepository<UserPlace> UserPlaces { get; }
+
         IRepository<RouteStation> RouteStations { get; }
 
         void Save();

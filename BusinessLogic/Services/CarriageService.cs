@@ -42,6 +42,17 @@ namespace BusinessLogic.Services
 
         }
 
+        public IEnumerable<CarriageDTO> GetCarriagesWithoutTrain()
+        {
+            var carriagesWithoutTrain = from a in _Database.Carriages.GetAll()
+                                     where a.TrainId == null
+                                     select a;
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Carriage, CarriageDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<Carriage>, List<CarriageDTO>>(carriagesWithoutTrain);
+        }
+
+
+
         public IEnumerable<CarriageDTO> GetCarriages()
         {
             // применяем автомаппер для проекции одной коллекции на другую
@@ -49,6 +60,18 @@ namespace BusinessLogic.Services
             return mapper.Map<IEnumerable<Carriage>, List<CarriageDTO>>(_Database.Carriages.GetAll());
         }
 
+        public IEnumerable<CarriageDTO> GetFreeCarriages()
+        {
+            // применяем автомаппер для проекции одной коллекции на другую
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Carriage, CarriageDTO>()).CreateMapper();
+            var items =mapper.Map<IEnumerable<Carriage>, List<CarriageDTO>>(_Database.Carriages.GetAll());
+            return from a in items
+                   where a.TrainId == null 
+                   select a;
+        }
+
+
+        
         public CarriageDTO GetCarriage(int? id)
         {
             if (id == null)
@@ -63,7 +86,7 @@ namespace BusinessLogic.Services
             }
                 
 
-            return new CarriageDTO { Id = carriage.Id, Number=carriage.Number, Description=carriage.Description, IsUsed=carriage.IsUsed, TrainId=carriage.TrainId, Type=carriage.Type, Name=carriage.Name};
+            return new CarriageDTO { Id = carriage.Id, Number=carriage.Number, Description=carriage.Description, TrainId=carriage.TrainId, Type=carriage.Type, Name=carriage.Name};
         }
 
 

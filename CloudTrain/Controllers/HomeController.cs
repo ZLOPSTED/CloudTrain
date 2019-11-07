@@ -25,30 +25,57 @@ namespace CloudTrain.Controllers
         private ITrainService _trainService;
         private ICarriageService _carriageService;
         private IRouteService _routeService;
+        private IRouteDateService _routeDateService;
         private IRouteStationService _routeStationService;
+       
 
-        public HomeController(IStationService stationservice, IRouteService routeService, ITrainService trainservice, ICarriageService carriageservice, IRouteStationService routeStationService)
+        public HomeController(IStationService stationservice, IRouteService routeService, ITrainService trainservice, IRouteDateService routedateservice, ICarriageService carriageservice, IRouteStationService routestationservice)
         {
+            _routeDateService = routedateservice;
             _stationService = stationservice;
             _trainService = trainservice;
             _carriageService = carriageservice;
             _routeService = routeService;
-            _routeStationService = routeStationService;
+            _routeStationService = routestationservice;
+           
         }
 
         [HttpGet]
-        public ActionResult ShowRoutes()
+        public ActionResult ShowRouteDates()
         {
-            IEnumerable<RouteDTO> routeDtos = _routeService.GetRoutes();
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<RouteDTO, RouteViewModel>()).CreateMapper();
-            var routes = mapper.Map<IEnumerable<RouteDTO>, List<RouteViewModel>>(routeDtos);
-
-
-
-            return View(routes);
+            SelectList stations = new SelectList(_stationService.GetStations(), "Id", "Name");
+            ViewBag.Stations = stations;
+            return View();
         }
 
 
+
+        [HttpPost]
+        public ActionResult ShowRouteDates(SearchRouteDateViewModel searchRouteDateViewModel)
+        {
+
+            var mapper = new MapperConfiguration(cfg => { cfg.CreateMap<CarriageDTO, CarriageViewModel>();
+                cfg.CreateMap<TrainDTO, TrainViewModel>(); cfg.CreateMap<RouteDateDTO, RouteDateViewModel>(); cfg.CreateMap<RouteDTO, RouteViewModel>(); cfg.CreateMap<SearchRouteDateViewModel, SearchRouteDateDTO>();
+                cfg.CreateMap<RouteStationDTO, RouteStationViewModel>(); 
+            }).CreateMapper();
+
+            var item = mapper.Map<SearchRouteDateViewModel, SearchRouteDateDTO>(searchRouteDateViewModel);
+
+            SelectList stations = new SelectList(_stationService.GetStations(), "Id", "Name");
+            ViewBag.Stations = stations;
+
+            ViewBag.RouteStations = mapper.Map<IEnumerable<RouteStationDTO>, List<RouteStationViewModel>>(_routeStationService.GetRouteStations());
+            ViewBag.Trains = mapper.Map<IEnumerable<TrainDTO>, List<TrainViewModel>>(_trainService.GetTrains());
+            ViewBag.Carriages = mapper.Map<IEnumerable<CarriageDTO>, List<CarriageViewModel>>(_carriageService.GetCarriages());
+            ViewBag.Routes = mapper.Map<IEnumerable<RouteDTO>, List<RouteViewModel>>(_routeDateService.Search(item));
+
+            return View(searchRouteDateViewModel);
+        }
+
+
+
+
+      
 
         public ActionResult RouteDetails(int? id)
         {
@@ -58,16 +85,8 @@ namespace CloudTrain.Controllers
             }
 
             var route = _routeService.GetRoute(id);
-            /*            var stations = _stationService.GetStations();
-                        var s = from st in stations
-                                where (from u in st.Routes
-                                                  where u.RouteId == route.Id
-                                                  select u.RouteId).Contains(route.Id)
-                                select st;
-            */
+
             var routeStations = _routeStationService.GetRouteStationsByRoute(route.Id);
-            
-           
 
 
             IEnumerable<RouteDTO> routeDtos = _routeService.GetRoutes();
