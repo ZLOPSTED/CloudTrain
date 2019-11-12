@@ -1,0 +1,65 @@
+﻿@using CloudTrain.Models;
+
+<link href="@Url.Content("~/Content/confirmticket.css")" rel="stylesheet" type="text/css" />
+
+
+@{
+    ViewBag.Title = "Подтверждение покупки";
+}
+
+
+
+
+<div class="logo-confirm"> Заполните форму билетов</div>
+<div class="form-confirm">
+
+    <form method="post" action="/Home/ConfirmTickets">
+
+        @foreach (var item in ViewBag.SelectPlaces)
+        {
+            <div class="row-inform">
+                @{PlaceViewModel place = new PlaceViewModel();
+                    foreach (var i in ViewBag.AllPlaces)
+                    {
+                        if (item == i.Id)
+                        {
+                            place = i;
+                            <div class="info-item">Место №@i.Number</div>
+                            break;
+                        }
+                    }
+                    foreach (var t in ViewBag.Carriages)
+                    {
+                        if (place.CarriageId == t.Id)
+                        {
+                            <div class="info-item">Вагон №@t.Number</div>
+                            break;
+                        }
+
+                    }
+                }
+                <div class="info-item">
+                    цена: @ViewBag.Price грн
+                </div>
+
+                <input hidden="hidden" name="PlaceId" value=@item />
+                <input hidden="hidden" name="RouteDate" value=@ViewBag.RouteDateId />
+                <input hidden="hidden" name="StartStationId" value=@ViewBag.StationStartId />
+                <input hidden="hidden" name="FinishStationId" value=@ViewBag.StationFinishId />
+                <input hidden="hidden" name="price" value=@ViewBag.Price />
+
+
+                <input class="client-name" name="ClientName" required min="10" placeholder="ФИО пассажира" />
+            </div>
+        }
+        @{
+            var a = @ViewBag.Price;
+            var b = @ViewBag.SelectPlaces.Length;
+            var c = Convert.ToDouble(a) * b;
+
+        }
+        <div class="sum">Итого: <text class="money"> @c грн</text></div>
+        <input type="submit" class="bttn" value="Оформить заказ" />
+    </form>
+
+</div>

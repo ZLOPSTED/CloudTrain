@@ -1,0 +1,148 @@
+﻿
+
+.carriage {
+    display: flex;
+    overflow-x: scroll;
+    margin-left: 50px;
+}
+
+.wall {
+    display: block;
+    height: 70px;
+    width: 10px;
+    background-color: #ffffff;
+    padding-right: 5px;
+}
+
+
+
+.carriage-logo {
+    color: #1da1f2;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left:50px;
+}
+
+.occupied-place {
+    background-color: #c14566;
+    
+}
+.green-place {
+    background-color: #1da1f2;
+}
+
+
+.selected-place {
+    background-color: #ffd45e;
+}
+
+.free-place {
+    background-color: #1da1f2;
+}
+
+
+    .free-place:hover {
+        background-color: #ffd45e;
+        transition:0.4s;
+    }
+
+.place {
+    height: 70px;
+    width: 50px;
+    text-align:center;
+    font-size:10px;
+    padding-top:30px;
+    padding-bottom:30px;
+    color:#ffffff;
+    padding-left:10px;
+    padding-right:10px;
+
+}
+
+.list-logo {
+    color: #ffffff;
+    text-align: center;
+    background-color: #1f8bfe;
+    border-top-right-radius: 4px;
+}
+
+
+.block-list {
+    position: fixed;
+    background-color: none;
+    padding-bottom: 10px;
+    display: flex;
+    left: 0;
+    flex-direction: column;
+    justify-content: center;
+  
+}
+
+.list {
+    padding-top: 5px;
+    overflow-y: scroll;
+    width: 210px;
+    background-color: rgba(31,139,254,0.6);
+    height: 175px;
+    font-size: 12px;
+    font-family: Arial;
+    font-weight: 900;
+}
+
+form {
+    margin-top:10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.list-element {
+    height: 25px;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+    .list-element:hover {
+        background-color: white;
+        color: #1f8bfe;
+    }
+
+.confirm-button {
+    background-color: #1f8bfe;
+    color: white;
+    border: none;
+    height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: Arial;
+    font-weight: 900;
+    border-bottom-right-radius: 4px;
+}
+
+
+    .confirm-button:hover {
+        background-color: #ffd45e;
+        transition: 0.4s;
+    }
+.instruction{
+    margin-top:50px;
+    margin-bottom:50px;
+    display:flex;
+    justify-content:center;
+    flex-direction:row;
+}
+
+
+.in-instruction {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.inst-text{
+    padding-top:20px;
+    margin-left:10px;
+    padding-right:20px;
+}

@@ -1,0 +1,74 @@
+﻿body {
+}
+
+
+.client-name {
+    height:30px;
+    width:500px;
+}
+
+
+.row-inform{
+    display:flex;
+    flex-direction:row;
+    margin-top:10px;
+    margin-bottom:10px;
+    
+}
+
+.info-item {
+
+    padding-right: 15px;
+    color:white;
+}
+
+input {
+    border-radius: 4px;
+    border: 1px solid white;
+    padding-left: 10px;
+}
+
+.bttn {
+    background-color: white;
+    border: 1px solid white;
+    height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: Arial;
+    font-weight: 900;
+    border-radius: 4px;
+    color: rgba(255,212,94,1);
+}
+
+    .bttn:hover {
+        background: #1da1f2;
+        color:white;
+        transition: 0.5s;
+        border-color: #1da1f2;
+    }
+
+
+.form-confirm {
+    margin-top: 20px;
+    margin-bottom: 100px;
+    background-color: rgba(255,212,94,1);
+    border-radius: 4px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.logo-confirm {
+    margin-top: 100px;
+    font-size: 30px;
+    color: #1da1f2;
+}
+
+.sum {
+    color: white;
+    padding-bottom: 15px;
+}
+
+.money {
+    color: #1da1f2;
+}

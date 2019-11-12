@@ -1,0 +1,176 @@
+﻿@model IEnumerable<CloudTrain.Models.CarriageViewModel>
+@using CloudTrain.Models;
+
+
+<link href="@Url.Content("~/Content/selectticket.css")" rel="stylesheet" type="text/css" />
+
+
+
+
+@{
+    ViewBag.Title = "Выбор мест";
+}
+
+
+
+
+
+<div class="instruction">
+    <div class="in-instruction">
+        <div class="place occupied-place"></div>
+        <div class="inst-text"> - Место занято</div>
+    </div>
+    <div class="in-instruction">
+        <div class="place green-place"></div>
+        <div class="inst-text"> - Место свободно</div>
+    </div>
+    <div class="in-instruction">
+        <div class="place  selected-place"></div>
+        <div class="inst-text"> - Выбранное место</div>
+    </div>
+</div>
+
+
+<div class="block-list">
+    <div class="list-logo">Выбранные места</div>
+    <div id="list" class="list"></div>
+
+    <form method="get" action="/Home/ConfirmTickets" id="form">
+
+        <input hidden="hidden" name="routeDateId" value=@ViewBag.RouteDateId />
+        <input hidden="hidden" name="stationStartId" value=@ViewBag.StartStationId />
+        <input hidden="hidden" name="stationFinishId" value=@ViewBag.FinishStationId />
+        <input hidden="hidden" name="price" value=@ViewBag.Price />
+        <input type="submit" class="confirm-button" value="Заказать билеты" />
+
+    </form>
+</div>
+
+
+
+@foreach (var item in Model)
+{
+
+
+    <div class="carriage-logo">
+        <div>Вагон №@item.Number</div>
+        <div>Тип: @item.Type</div>
+    </div>
+
+    <div class="carriage">
+        @{var carriageplaces = from i in ViewBag.Places as List<PlaceViewModel>
+                                 where i.CarriageId == item.Id
+                                 select i;
+            var boolean = false;
+
+            int iter = 0;
+
+
+            foreach (var a in carriageplaces)
+            {
+                foreach (var i in ViewBag.UserPlaces)
+                {
+                    if (a.Id == i.PlaceId)
+                    {
+                        boolean = true;
+                        break;
+                    }
+
+                }
+
+
+                if (item.Type.Equals("Купе"))
+                {
+                    if (iter != 0 && iter % 4 == 0)
+                    {
+                        <div class="wall"></div>
+                    }
+                    iter += 1;
+                }
+                else if (item.Type.Equals("Общий"))
+                {
+                    if (iter != 0 && iter % 2 == 0)
+                    {
+                        <div class="wall"></div>
+                    }
+                    iter += 1;
+                }
+                else if (item.Type.Equals("Плацкарт"))
+                {
+                    if (iter != 0 && iter % 4 == 0 && a.Number <= 36)
+                    {
+                        <div class="wall"></div>
+                    }
+                    else if (iter != 0 && iter % 2 == 0 && a.Number > 36)
+                    {
+                        <div class="wall"></div>
+                    }
+                    iter += 1;
+                }
+
+
+
+
+                if (boolean == true)
+                {
+                    <div id="@a.Id" class="place occupied-place">
+                        №@a.Number
+                    </div>
+                    boolean = false;
+                }
+                else
+                {
+                    <div id="@a.Id" class="place free-place" onclick="AddPlace(@a.Id , @a.Number , @item.Number)">
+                        №@a.Number
+                    </div>
+                }
+            }
+        }
+
+
+    </div>
+
+
+}
+
+
+<script>
+
+    function AddPlace(id, placenumber, carriagenumber) {
+
+        let element = document.getElementById(id);
+        let form = document.getElementById('form');
+        let list = document.getElementById('list');
+        let bool = false;
+        for (let i = 0; i < form.childNodes.length; i++) {
+            if (form.childNodes[i].value == id) {
+                bool = true;
+                break;
+            }
+        }
+        if (bool == true) {
+            for (let j = 0; j < form.childNodes.length; j++) {
+                if (form.childNodes[j].value == String(id)) {
+                    form.removeChild(form.childNodes[j]);
+                    break;
+                }
+            }
+            list.removeChild(document.getElementById(String(placenumber)));
+            element.className = "place free-place"
+        }
+        else {
+
+            let p = document.createElement('p');
+            p.textContent = "ВАГОН: " + carriagenumber + " МЕСТО: " + placenumber;
+            p.className = "list-element"
+            p.id = String(placenumber);
+            list.appendChild(p);
+            let input = document.createElement('input');
+            input.hidden = "hidden";
+            input.name = "places";
+            input.value = id;
+            form.appendChild(input);
+            element.className = "place selected-place"
+        }
+    }
+</script>

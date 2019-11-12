@@ -1,0 +1,40 @@
+﻿@using CloudTrain.Models
+
+
+@{
+    ViewBag.Title = "ShowRouteDetails";
+}
+<link href="@Url.Content("~/Content/routeinfo.css")" rel="stylesheet" type="text/css" />
+
+<div class="route-name">
+    Маршрут: @ViewBag.RouteName
+</div>
+
+
+
+
+@{
+    var routestations = ViewBag.RouteStations as List<RouteStationViewModel>;
+    var orderByRouteStations = routestations.OrderBy(i => i.TimeArrival);
+}
+@foreach (var r in orderByRouteStations)
+{
+    
+
+
+    <div class="station">
+        @foreach (var y in ViewBag.Stations)
+        {
+        if (r.StationId == y.Id)
+        {
+        <div class="station-name">Станция: @y.Name</div>
+        break;
+        }
+        }
+        <div>Время прибытия на станцию: <text>@r.TimeArrival</text></div>
+        <div> Время отправления со станции: <text>@r.TimeDeparture</text></div>
+    </div>
+
+
+ 
+}

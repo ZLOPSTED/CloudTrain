@@ -1,0 +1,157 @@
+﻿@model IEnumerable<CloudTrain.Models.UserPlaceViewModel>
+@using CloudTrain.Models;
+
+<link href="@Url.Content("~/Content/invoives.css")" rel="stylesheet" type="text/css" />
+
+
+
+
+@{
+    ViewBag.Title = "Мои билеты";
+}
+
+
+<div class="user-info">
+    Пользователь: <text>@ViewBag.UserName</text> <br />
+    Банк: <text>@ViewBag.Bank</text><br />
+    Счет в банке: <text>@ViewBag.Account</text><br />
+</div>
+
+
+<div>Список купленных билетов:</div>
+<br />
+<div class="my-table">
+    <table class="table">
+        <tr class="header">
+            <th>
+                Дата приобретения
+            </th>
+            <th>
+                Имя пассажира
+            </th>
+            <th>
+                Маршрут
+            </th>
+            <th>
+                Поезд
+            </th>
+            <th>
+                Вагон
+            </th>
+            <th>
+                Место
+            </th>
+            <th>
+                Цена/грн
+            </th>
+            <th>
+                Дата поездки
+            </th>
+            <th>
+                Станция отправления
+            </th>
+            <th>
+                Время отправления
+            </th>
+            <th>
+                Станция прибытия
+            </th>
+            <th>
+                Время прибытия
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.DateOfPurchase
+                </td>
+                <td>
+                    @item.ClientName
+                </td>
+
+                <td>
+                    @{
+                        var routedates = ViewBag.RouteDates as List<RouteDateViewModel>;
+                        var routedate = routedates.First(i => i.Id == item.RouteDateId);
+                        var routes = ViewBag.Routes as List<RouteViewModel>;
+                        var route = routes.First(a => a.Id == routedate.RouteId);
+                        <text>@route.Name</text>
+
+                    }
+                </td>
+
+
+                <td>
+                    @{
+                        var trains = ViewBag.Trains as List<TrainViewModel>;
+                        var train = trains.First(t => t.Id == route.TrainId);
+                        <text>@train.Name</text>
+
+                    }
+                </td>
+
+
+                <td>
+                    @{
+                        var places = ViewBag.Places as List<PlaceViewModel>;
+                        var place = places.First(j => j.Id == item.PlaceId);
+                        var carriages = ViewBag.Carriages as List<CarriageViewModel>;
+                        var carriage = carriages.First(v => v.Id == place.CarriageId);
+                        <text>@carriage.Number</text>
+                    }
+                </td>
+
+
+                <td>
+                    @place.Number
+                </td>
+
+
+                <td>
+                    @item.Price
+                </td>
+
+
+                <td>
+                    @routedate.Date.ToString("dd.MM.yyyy")
+                </td>
+
+
+                <td>
+                    @{
+                        var stations = ViewBag.Stations as List<StationViewModel>;
+                        var stationStart = stations.First(s => s.Id == item.StartStationId);
+                        <text>@stationStart.Name</text>
+                    }
+                </td>
+
+
+                <td>
+                    @{
+                        var routeStations = ViewBag.RouteStations as List<RouteStationViewModel>;
+                        var startRouteStation = routeStations.First(l => l.StationId == item.StartStationId);
+                        <text>@startRouteStation.TimeDeparture</text>
+                    }
+
+                </td>
+
+                <td>
+                    @{
+                        var finishStart = stations.First(s => s.Id == item.FinishStationId);
+                        <text>@finishStart.Name</text>
+                    }
+                </td>
+                <td>
+                    @{
+                        var finishRouteStation = routeStations.First(l => l.StationId == item.FinishStationId);
+                        <text>@finishRouteStation.TimeArrival</text>
+                    }
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

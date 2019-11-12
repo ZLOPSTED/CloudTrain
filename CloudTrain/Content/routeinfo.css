@@ -1,0 +1,25 @@
+﻿body {
+}
+
+
+.route-name {
+    font-size: 25px;
+    color: #1da1f2;
+}
+
+.station {
+    background-color: #ffd45e;
+    padding:20px;
+    border-radius:4px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.station-name{
+    color:white;
+    font-size:20px;
+}
+
+text {
+    color: #007bff;
+}
